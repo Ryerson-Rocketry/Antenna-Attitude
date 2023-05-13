@@ -58,17 +58,21 @@ void loop() {
   
   int xf, yf, zf;
 
-  xf = Serial.readStringUntil('\n').toInt();
-  yf = Serial.readStringUntil('\n').toInt();
-  zf = 79;
+  //xf = Serial.readStringUntil('\n').toInt();
+  //yf = Serial.readStringUntil('\n').toInt();
+  xf=56;
+  yf=56;
+  zf =79;
   float magnitude = sqrt(pow(xf - xi, 2) + pow(yf-yi, 2) + pow(zf - zi, 2));
   float anglex = acos((xf-xi)/magnitude) * 180/M_PI;
   float angley = acos((yf-yi)/magnitude) * 180/M_PI;
   float anglez = acos((zf-zi)/magnitude) * 180/M_PI;
+  int value_x=map(x,-10,10,75,360);
   
-  int differencex = anglex - x; 
+  int differencex = value_x-anglex; 
 
-  value = map(differencex,  0, 10, 0, 180);
+  value = map(differencex,  0, 90, 0, 180);
+  Serial.println(value);
   servo1.write(value);
   
 }
